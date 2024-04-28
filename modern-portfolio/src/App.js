@@ -4,6 +4,8 @@ import UseMediaQuery from "./hooks/UseMediaQuery";
 import { Navbar } from "./Scenes/Navbar";
 import DotGroup from "./Scenes/DotGroup";
 import Landing from "./Scenes/Landing";
+import LineGradient from "./Componeents/LineGradient";
+import MySkills from "./Scenes/MySkills";
 
 
 function App() {
@@ -21,13 +23,13 @@ function App() {
   }, []);
 
   return (
-    <div className="app bg-deep-blue">
+    <div className="app bg-black">
       <Navbar
         isTopOfPage={isTopOfPage}
         selectedPage={selectedPage}
         setSelectedPage={setSelectedPage}
       />
-      <div className=" w-5/6 mx-auto md:h-full">
+      <div className=" w-5/6  mx-auto md:h-full">
 {iaAboveMediumScreen && (
   <DotGroup
   selectedPage={selectedPage}
@@ -36,6 +38,13 @@ function App() {
 )}
 <Landing  setSelectedPage={setSelectedPage} />
       </div>
+
+<LineGradient />
+
+<div className=" w-5/6 mx-auto md:h-full">
+  <MySkills />
+</div>
+
     </div>
   );
 }
