@@ -1,68 +1,248 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import UseMediaQuery from "../hooks/UseMediaQuery";
+import profile from "../assets/logo.png";
+import { motion } from "framer-motion";
+import {
+  Link,
+  Button,
+  Element,
+  Events,
+  animateScroll as scroll,
+  scrollSpy,
+} from "react-scroll";
 
-const Link = ({ page, selectedPage, setSelectedPage }) => {
-  const lowerCasePage = page.toLowerCase();
- 
-  return (
-    <AnchorLink
-      className={`${
-        selectedPage === lowerCasePage ? " text-yellow" : "text-white"
-      }
-    hover:text-yellow transition duration-500`}
-      href={`#${lowerCasePage}`}
-      onClick={() => setSelectedPage(lowerCasePage)}
-    >
-      {page}
-    </AnchorLink>
-  );
-};
+// const Link = ({ page, selectedPage, setSelectedPage }) => {
+//   const lowerCasePage = page.toLowerCase();
 
-export const Navbar = ({isTopOfPage, selectedPage, setSelectedPage }) => {
+//   return (
+//     <AnchorLink
+//       className={`${
+//         selectedPage === lowerCasePage ? " text-yellow" : "text-white"
+//       }
+//     hover:text-yellow transition duration-500`}
+//       href={`#${lowerCasePage}`}
+//       onClick={() => setSelectedPage(lowerCasePage)}
+//     >
+//       {page}
+//     </AnchorLink>
+//   );
+// };
+
+export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
   const [isMenuToggle, setIsMenuToggle] = useState(false);
   const isAboveSmallScreen = UseMediaQuery("(min-width:768px)");
-  const navbarBackground = isTopOfPage? "" : "bg-red"
+  const navbarBackground = isTopOfPage ? "" : "bg-red";
+
+  // useEffect is used to perform side effects in functional components.
+  // Here, it's used to register scroll events and update scrollSpy when the component mounts.
+  useEffect(() => {
+    // Registering the 'begin' event and logging it to the console when triggered.
+    Events.scrollEvent.register("begin", (to, element) => {
+      // console.log("begin", to, element);
+    });
+
+    // Registering the 'end' event and logging it to the console when triggered.
+    Events.scrollEvent.register("end", (to, element) => {
+      // console.log("end", to, element);
+    });
+
+    // Updating scrollSpy when the component mounts.
+    scrollSpy.update();
+
+    // Returning a cleanup function to remove the registered events when the component unmounts.
+    return () => {
+      Events.scrollEvent.remove("begin");
+      Events.scrollEvent.remove("end");
+    };
+  }, []);
+
+  // Function to handle the activation of a link.
+  const handleSetActive = (to) => {
+    // console.log(to);
+    setSelectedPage(to);
+  };
+
   return (
     <nav className={`${navbarBackground} z-40 w-full top-0 py-6`}>
       <div className=" flex items-center justify-between mx-auto w-5/6">
-        <h4 className=" text-3xl font-bold ">Hello</h4>
+        {/* <h4 className=" text-3xl font-bold ">GS</h4> */}
+        <motion.div whileTap={{ scale: 0.8 }}>
+          <img
+            src={profile}
+            className="  hover:filter hover:saturate-200 transition duration-500 z-10 w-full max-w-[100px] md:max-w-[100px]"
+            alt="profile"
+          />
+        </motion.div>
 
         {/* desktop-menu */}
         {isAboveSmallScreen ? (
-          <div className=" justify-between flex gap-16  text-sm font-semibold">
-            <Link
-              page="Home"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
-            <Link
-              page="About"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
-            <Link
-              page="Education"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
-            <Link
-              page="Skills"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
-            <Link
-              page="Projects"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
-            <Link
-              page="Contact"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
-          </div>
+          <motion.div className=" justify-between flex gap-16  text-sm font-semibold">
+            <motion.div whileTap={{ scale: 0.8 }}>
+              {/* <Link
+                page="Home"
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              /> */}
+              <Link
+                activeClass="active"
+                to="home"
+                spy={true}
+                smooth={true}
+                offset={50}
+                duration={500}
+                onSetActive={handleSetActive}
+              >
+                <p
+                  className={`${
+                    selectedPage === "home" ? " text-yellow" : "text-white"
+                  }
+    hover:text-yellow transition duration-500`}
+                >
+                  Home
+                </p>
+              </Link>
+            </motion.div>
+            <motion.div whileTap={{ scale: 0.8 }}>
+              {/* <Link
+                page="Home"
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              /> */}
+              <Link
+                activeClass="active"
+                to="about"
+                spy={true}
+                smooth={true}
+                offset={50}
+                duration={500}
+                onSetActive={handleSetActive}
+              >
+                <p
+                  className={`${
+                    selectedPage === "about" ? " text-yellow" : "text-white"
+                  }
+    hover:text-yellow transition duration-500`}
+                >
+                  About
+                </p>
+              </Link>
+            </motion.div>
+
+            <motion.div whileTap={{ scale: 0.8 }}>
+              {/* <Link
+                page="Education"
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              /> */}
+              <Link
+                activeClass="active"
+                to="education"
+                spy={true}
+                smooth={true}
+                offset={50}
+                duration={500}
+                onSetActive={handleSetActive}
+              >
+                <p
+                  className={`${
+                    selectedPage === "education" ? " text-yellow" : "text-white"
+                  }
+    hover:text-yellow transition duration-500`}
+                >
+                  Education
+                </p>
+              </Link>
+            </motion.div>
+
+
+            <motion.div whileTap={{ scale: 0.8 }}>
+              {/* <Link
+                page="About"
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              /> */}
+              <Link
+                activeClass="active"
+                to="skills"
+                spy={true}
+                smooth={true}
+                offset={50}
+                duration={500}
+                onSetActive={handleSetActive}
+              >
+                <p
+                  className={`${
+                    selectedPage === "skills" ? " text-yellow" : "text-white"
+                  }
+    hover:text-yellow transition duration-500`}
+                >
+                  Skills
+                </p>
+              </Link>
+            </motion.div>
+   
+            {/* <motion.div whileTap={{ scale: 0.8 }}>
+              <Link
+                page="Skills"
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              />
+            </motion.div> */}
+            <motion.div whileTap={{ scale: 0.8 }}>
+              {/* <Link
+                page="Projects"
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              /> */}
+
+              <Link
+                activeClass="active"
+                to="projects"
+                spy={true}
+                smooth={true}
+                offset={50}
+                duration={500}
+                onSetActive={handleSetActive}
+              >
+                <p
+                  className={`${
+                    selectedPage === "projects" ? " text-yellow" : "text-white"
+                  }
+    hover:text-yellow transition duration-500`}
+                >
+                  Projects
+                </p>
+              </Link>
+            </motion.div>
+            <motion.div whileTap={{ scale: 0.8 }}>
+              {/* <Link
+                page="Contact"
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              /> */}
+
+              <Link
+                activeClass="active"
+                to="contact"
+                spy={true}
+                smooth={true}
+                offset={50}
+                duration={500}
+                onSetActive={handleSetActive}
+              >
+                <p
+                  className={`${
+                    selectedPage === "contact" ? " text-yellow" : "text-white"
+                  }
+    hover:text-yellow transition duration-500`}
+                >
+                  Contact
+                </p>
+              </Link>
+            </motion.div>
+          </motion.div>
         ) : (
           <div>
             <button
@@ -76,19 +256,18 @@ export const Navbar = ({isTopOfPage, selectedPage, setSelectedPage }) => {
       </div>
       {/* desktop-menu */}
 
-{
-    !isAboveSmallScreen && isMenuToggle && (
+      {!isAboveSmallScreen && isMenuToggle && (
         <div className=" fixed right-0 bottom-0 h-full bg-blue w-[300px] transition ease-in-out duration-1500 ">
-            {/* close icon */}
-            <div className=" flex justify-end p-12">
-<button onClick={()=> setIsMenuToggle(!isMenuToggle)}>
-    <p>X</p>
-</button>
-            </div>
+          {/* close icon */}
+          <div className=" flex justify-end p-12">
+            <button onClick={() => setIsMenuToggle(!isMenuToggle)}>
+              <p>X</p>
+            </button>
+          </div>
 
- {/* menu */}
-<div className=" flex flex-col gap-10 ml-[33%] text-2xl text-deep-blue">
-<Link
+          {/* menu */}
+          <div className=" flex flex-col gap-10 ml-[33%] text-2xl text-deep-blue">
+            <Link
               page="Home"
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
@@ -118,14 +297,9 @@ export const Navbar = ({isTopOfPage, selectedPage, setSelectedPage }) => {
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
             />
-</div>
-
-
+          </div>
         </div>
-    )
-}
-
-
+      )}
     </nav>
   );
 };

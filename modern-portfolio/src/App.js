@@ -6,6 +6,10 @@ import DotGroup from "./Scenes/DotGroup";
 import Landing from "./Scenes/Landing";
 import LineGradient from "./Componeents/LineGradient";
 import MySkills from "./Scenes/MySkills";
+import About from "./Scenes/About";
+import Education from "./Scenes/Education";
+import Projects from "./Scenes/Projects";
+import Contact from "./Scenes/Contact";
 
 
 function App() {
@@ -42,7 +46,11 @@ function App() {
 <LineGradient />
 
 <div className=" w-5/6 mx-auto md:h-full">
+  <About />
+  <Education />
   <MySkills />
+  <Projects />
+  <Contact />
 </div>
 
     </div>

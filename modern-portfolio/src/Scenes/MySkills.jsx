@@ -2,6 +2,64 @@ import React from 'react';
 // import { skills } from '../../data/constants';
 import { motion } from 'framer-motion';
 
+const SkillsSection = ({ skills }) => {
+  return (
+    <motion.div
+      className="py-12"
+      id="skills"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6  lg:px-8">
+        <h2 className="text-3xl font-extrabold tracking-tight  text-white sm:text-4xl text-center mb-8">
+          Skills
+        </h2>
+        <div className="pyramid-grid  ">
+          {skills.map((skill, index) => (
+            <SkillCard key={index} skill={skill} />
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+const SkillCard = ({ skill }) => {
+  return (
+    <div
+      className="skill-card items-center h-[100%]  py-8 gap-8"
+      
+    >
+      <h3 className="text-2xl flex justify-center items-center font-medium text-white mb-2 ">{skill.title}</h3>
+    <motion.div
+      className="skill-card  h-[100%] justify-center items-center flex flex-row py-8 gap-8"
+      
+    >
+      <motion.div className="skill-items flex flex-row gap-8"
+      
+      >
+        {skill.skills.map((item, itemIndex) => (
+          <SkillItem key={itemIndex} item={item} />
+        ))}
+      </motion.div>
+    </motion.div>
+    </div>
+  );
+};
+
+const SkillItem = ({ item }) => {
+  return (
+    <motion.div className="skill-item flex flex-col gap-y-4 "
+    whileHover={{ scale: 1.2 }}
+    >
+      <img className="skill-image" src={item.image} width={80}  alt={item.name} />
+      <span className="text-sm font-medium text-gray-500">{item.name}</span>
+    </motion.div>
+  );
+};
+
+
 const MySkills = () => {
 
  const skills = [
@@ -169,51 +227,44 @@ const MySkills = () => {
 
 
   return (
-    <motion.div
-    className="py-12 "
-    id="skills"
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 0.5 }}
-  >
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="text-center">
-        <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-          Skills
-        </h2>
-        <p className="mt-4 text-lg text-gray-600">
-          Here are some of my skills on which I have been working on for the past 2 years.
-        </p>
-      </div>
-      <div className="mt-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skills.map((skill, index) => (
-            <motion.div
-              key={index}
-              className=" overflow-hidden shadow rounded-lg"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <div className="px-4 py-5 sm:p-6">
-                <h3 className="text-lg font-medium text-gray-900">{skill.title}</h3>
-                <div className="mt-2">
-                  <div className="divide-y divide-gray-200">
-                    {skill.skills.map((item, itemIndex) => (
-                      <div key={itemIndex} className="flex items-center py-1">
-                        <img className="h-6 w-6 mr-2" src={item.image} alt={item.name} />
-                        <span className="text-sm font-medium text-gray-500">{item.name}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </motion.div>
+    <SkillsSection skills={skills} />
   );
 };
 
 export default MySkills;
+
+const styles = `
+  .pyramid-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    transform: rotate(-45deg);
+  }
+
+  .skill-card {
+    transform: rotate(45deg);
+    margin: 0 -30px;
+  }
+
+  .skill-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .skill-item {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+  }
+
+  .skill-image {
+    height: 60px;
+    width: 60px;
+    margin-right: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  .skill-image:hover {
+    transform: scale(1.2);
+  }
+`;
