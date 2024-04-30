@@ -11,7 +11,6 @@ import Education from "./Scenes/Education";
 import Projects from "./Scenes/Projects";
 import Contact from "./Scenes/Contact";
 
-
 function App() {
   const [selectedPage, setSelectedPage] = useState("home");
   const iaAboveMediumScreen = UseMediaQuery("(min-width:1060px)");
@@ -34,25 +33,28 @@ function App() {
         setSelectedPage={setSelectedPage}
       />
       <div className=" w-5/6  mx-auto md:h-full">
-{iaAboveMediumScreen && (
-  <DotGroup
-  selectedPage={selectedPage}
-  setSelectedPage={setSelectedPage}
-  />
-)}
-<Landing  setSelectedPage={setSelectedPage} />
+        {iaAboveMediumScreen && (
+          <DotGroup
+            selectedPage={selectedPage}
+            setSelectedPage={setSelectedPage}
+          />
+        )}
+        <Landing setSelectedPage={setSelectedPage} />
+      <LineGradient />
       </div>
 
-<LineGradient />
 
-<div className=" w-5/6 mx-auto md:h-full">
-  <About />
-  <Education />
-  <MySkills />
-  <Projects />
-  <Contact />
-</div>
-
+      <div className=" w-5/6 mx-auto md:h-full">
+        <About />
+        <LineGradient />
+        <Education />
+        <LineGradient />
+        <MySkills />
+        <LineGradient />
+        <Projects />
+        <LineGradient />
+        <Contact />
+      </div>
     </div>
   );
 }

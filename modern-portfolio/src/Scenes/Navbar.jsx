@@ -3,7 +3,7 @@ import { useState } from "react";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import UseMediaQuery from "../hooks/UseMediaQuery";
 import profile from "../assets/logo.png";
-import { motion } from "framer-motion";
+import { animate, motion } from "framer-motion";
 import {
   Link,
   Button,
@@ -64,22 +64,40 @@ export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
     setSelectedPage(to);
   };
 
+
+  const varients ={
+    intial : {
+      y : 500,
+      opacity : 0
+    },
+    animate :{
+      y : 0,
+      opacity : 1,
+      transition : {
+        duration : 500,
+        staggerChildren : 0.5
+      }
+    }
+  }
+
   return (
-    <nav className={`${navbarBackground} z-40 w-full top-0 py-6`}>
+    <motion.nav className={`${navbarBackground} z-40 w-full top-0 py-6`} variants={varients} initial="initial" whileInView="animate">
       <div className=" flex items-center justify-between mx-auto w-5/6">
         {/* <h4 className=" text-3xl font-bold ">GS</h4> */}
-        <motion.div whileTap={{ scale: 0.8 }}>
-          <img
+        <motion.div whileTap={{ scale: 0.8 }} initial="initial" whileInView="animate">
+          <motion.img
             src={profile}
             className="  hover:filter hover:saturate-200 transition duration-500 z-10 w-full max-w-[100px] md:max-w-[100px]"
             alt="profile"
+            variants={varients}
+            initial="initial" whileInView="animate"
           />
         </motion.div>
 
         {/* desktop-menu */}
         {isAboveSmallScreen ? (
-          <motion.div className=" justify-between flex gap-16  text-sm font-semibold">
-            <motion.div whileTap={{ scale: 0.8 }}>
+          <motion.div className=" justify-between flex gap-16  text-sm font-semibold" variants={varients} initial="initial" whileInView="animate">
+            <motion.div whileTap={{ scale: 0.8 }} variants={varients} initial="initial" whileInView="animate">
               {/* <Link
                 page="Home"
                 selectedPage={selectedPage}
@@ -94,14 +112,16 @@ export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
                 duration={500}
                 onSetActive={handleSetActive}
               >
-                <p
+                <motion.p
                   className={`${
                     selectedPage === "home" ? " text-yellow" : "text-white"
                   }
     hover:text-yellow transition duration-500`}
+    variants={varients}
+    initial="initial" whileInView="animate"
                 >
                   Home
-                </p>
+                </motion.p>
               </Link>
             </motion.div>
             <motion.div whileTap={{ scale: 0.8 }}>
@@ -119,14 +139,16 @@ export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
                 duration={500}
                 onSetActive={handleSetActive}
               >
-                <p
+                <motion.p
+                variants={varients}
                   className={`${
                     selectedPage === "about" ? " text-yellow" : "text-white"
                   }
     hover:text-yellow transition duration-500`}
+    initial="initial" whileInView="animate"
                 >
                   About
-                </p>
+                </motion.p>
               </Link>
             </motion.div>
 
@@ -145,14 +167,15 @@ export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
                 duration={500}
                 onSetActive={handleSetActive}
               >
-                <p
+                <motion.p
+                variants={varients}
                   className={`${
                     selectedPage === "education" ? " text-yellow" : "text-white"
                   }
     hover:text-yellow transition duration-500`}
                 >
                   Education
-                </p>
+                </motion.p>
               </Link>
             </motion.div>
 
@@ -300,6 +323,6 @@ export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
           </div>
         </div>
       )}
-    </nav>
+    </motion.nav>
   );
 };
