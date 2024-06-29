@@ -32,6 +32,7 @@ import {
 
 export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
   const [isMenuToggle, setIsMenuToggle] = useState(false);
+  console.log(isMenuToggle);
   const isAboveSmallScreen = UseMediaQuery("(min-width:768px)");
   const navbarBackground = isTopOfPage ? "" : "bg-red";
 
@@ -64,40 +65,59 @@ export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
     setSelectedPage(to);
   };
 
-
-  const varients ={
-    intial : {
-      y : 500,
-      opacity : 0
+  const varients = {
+    intial: {
+      y: 500,
+      opacity: 0,
     },
-    animate :{
-      y : 0,
-      opacity : 1,
-      transition : {
-        duration : 500,
-        staggerChildren : 0.5
-      }
-    }
-  }
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 500,
+        staggerChildren: 0.5,
+      },
+    },
+  };
 
   return (
-    <motion.nav className={`${navbarBackground} z-40 w-full top-0 py-6`} variants={varients} initial="initial" whileInView="animate">
+    <motion.nav
+      className={`${navbarBackground} z-40 w-full top-0 py-6`}
+      variants={varients}
+      initial="initial"
+      whileInView="animate"
+    >
       <div className=" flex items-center justify-between mx-auto w-5/6">
         {/* <h4 className=" text-3xl font-bold ">GS</h4> */}
-        <motion.div whileTap={{ scale: 0.8 }} initial="initial" whileInView="animate">
+        <motion.div
+          whileTap={{ scale: 0.8 }}
+          initial="initial"
+          whileInView="animate"
+        >
           <motion.img
             src={profile}
             className="  hover:filter hover:saturate-200 transition duration-500 z-10 w-full max-w-[100px] md:max-w-[100px]"
             alt="profile"
             variants={varients}
-            initial="initial" whileInView="animate"
+            initial="initial"
+            whileInView="animate"
           />
         </motion.div>
 
         {/* desktop-menu */}
         {isAboveSmallScreen ? (
-          <motion.div className=" justify-between flex gap-16  text-sm font-semibold" variants={varients} initial="initial" whileInView="animate">
-            <motion.div whileTap={{ scale: 0.8 }} variants={varients} initial="initial" whileInView="animate">
+          <motion.div
+            className=" justify-between flex gap-16  text-sm font-semibold"
+            variants={varients}
+            initial="initial"
+            whileInView="animate"
+          >
+            <motion.div
+              whileTap={{ scale: 0.8 }}
+              variants={varients}
+              initial="initial"
+              whileInView="animate"
+            >
               {/* <Link
                 page="Home"
                 selectedPage={selectedPage}
@@ -117,8 +137,9 @@ export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
                     selectedPage === "home" ? " text-yellow" : "text-white"
                   }
     hover:text-yellow transition duration-500`}
-    variants={varients}
-    initial="initial" whileInView="animate"
+                  variants={varients}
+                  initial="initial"
+                  whileInView="animate"
                 >
                   Home
                 </motion.p>
@@ -140,12 +161,13 @@ export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
                 onSetActive={handleSetActive}
               >
                 <motion.p
-                variants={varients}
+                  variants={varients}
                   className={`${
                     selectedPage === "about" ? " text-yellow" : "text-white"
                   }
     hover:text-yellow transition duration-500`}
-    initial="initial" whileInView="animate"
+                  initial="initial"
+                  whileInView="animate"
                 >
                   About
                 </motion.p>
@@ -168,7 +190,7 @@ export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
                 onSetActive={handleSetActive}
               >
                 <motion.p
-                variants={varients}
+                  variants={varients}
                   className={`${
                     selectedPage === "education" ? " text-yellow" : "text-white"
                   }
@@ -178,7 +200,6 @@ export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
                 </motion.p>
               </Link>
             </motion.div>
-
 
             <motion.div whileTap={{ scale: 0.8 }}>
               {/* <Link
@@ -205,7 +226,7 @@ export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
                 </p>
               </Link>
             </motion.div>
-   
+
             {/* <motion.div whileTap={{ scale: 0.8 }}>
               <Link
                 page="Skills"
@@ -283,13 +304,61 @@ export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
         <div className=" fixed right-0 bottom-0 h-full bg-blue w-[300px] transition ease-in-out duration-1500 ">
           {/* close icon */}
           <div className=" flex justify-end p-12">
-            <button onClick={() => setIsMenuToggle(!isMenuToggle)}>
+            <button onClick={() => setIsMenuToggle(false)}>
               <p>X</p>
             </button>
           </div>
 
+          {/* {!isAboveSmallScreen && isMenuToggle && ( */}
+          {/* <div className="fixed right-0 bottom-0 h-full bg-blue ml-[33%] w-[300px] transition z-50 ease-in-out duration-1500"> */}
+          {/* <div className="flex justify-end p-12">
+            <button onClick={() => setIsMenuToggle(!isMenuToggle)}>
+              <p>X</p>
+            </button>
+          </div> */}
+
+          <div className="flex flex-col gap-10 text-2xl text-deep-blue">
+            {[
+              "home",
+              "about",
+              "education",
+              "skills",
+              "projects",
+              "contact",
+            ].map((page) => (
+              <p
+                key={page}
+                // className={`${selectedPage === page ? "text-yellow" : "text-white"} hover:text-yellow transition duration-500 cursor-pointer`}
+                onClick={() => {
+                  setIsMenuToggle(false);
+                  console.log("Hello");
+                  setSelectedPage(page);
+                }}
+              >
+                <Link
+                  activeClass="active"
+                  to={page}
+                  onClick={() => {
+                    setIsMenuToggle(false);
+                  }}
+                  spy={true}
+                  smooth={true}
+                  offset={50}
+                  duration={500}
+                  // onSetActive={handleSetActive}
+                  //     selectedPage={selectedPage}
+                  // setSelectedPage={setSelectedPage}
+                >
+                  {page.charAt(0).toUpperCase() + page.slice(1)}
+                </Link>
+              </p>
+            ))}
+          </div>
+          {/* </div> */}
+          {/* )} */}
+
           {/* menu */}
-          <div className=" flex flex-col gap-10 ml-[33%] text-2xl text-deep-blue">
+          {/* <div className=" flex flex-col gap-10 ml-[33%] text-2xl text-deep-blue">
             <Link
               page="Home"
               selectedPage={selectedPage}
@@ -320,7 +389,7 @@ export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
             />
-          </div>
+          </div> */}
         </div>
       )}
     </motion.nav>

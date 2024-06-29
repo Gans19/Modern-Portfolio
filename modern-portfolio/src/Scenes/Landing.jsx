@@ -13,19 +13,26 @@ const Landing = ({ setSelectedPage }) => {
       className="md:flex md:justify-normal md:items-center md:h-full gap-16 py-10"
     >
       {/* Image section */}
-      <div className="md:order-2 flex justify-center basis-3/5 z-10 mt-16 md:mt-32">
+      <div className="md:order-2 flex justify-center basis-3/5 z-10 mt-16 ">
         {isAboveMediumScreen ? (
-          <div className="bg-red-400 relative z-0 ml-20 before:absolute before:-top-20 before:-left-20 before:rounded-t-[400pc] before:w-full before:h-full before:border-2 before:border-blue before:max-w-[400px] before:z-[-1]">
-            <img
-              src={profile}
-              className="  hover:filter hover:saturate-200 transition duration-500 z-10 w-full max-w-[400px] md:max-w-[400px]"
-              alt="profile"
-            />
+          // <div className="card-wrapper  relative z-0 ml-20 before:absolute before:-top-20 before:-left-20 before:rounded-t-[400pc] before:w-full before:h-full before:border-2 before:border-blue before:max-w-[400px] before:z-[-1]">
+
+          <div class="flex  flex-col items-center justify-center w-[100%] h-[100%]  text-white">
+            <div class="card-wrapper h-[500px] w-[400px]">
+              <div class="card-content flex items-center justify-center text-xs">
+                <img
+                  src={profile}
+                  className=" card-content hover:filter hover:saturate-200 transition duration-500 z-10 w-full max-w-[400px] md:max-w-[400px]"
+                  alt="profile"
+                />
+              </div>
+            </div>
           </div>
         ) : (
+          // </div>
           <img
             src={profile}
-            className="  hover:filter hover:saturate-200 transition duration-500 z-10 w-full max-w-[400px] md:max-w-[600px]"
+            className="  hover:filter hover:saturate-200 transition duration-500  w-full max-w-[400px] md:max-w-[600px]"
             alt="profile"
           />
         )}
@@ -48,7 +55,8 @@ const Landing = ({ setSelectedPage }) => {
           <p className=" text-6xl z-10 text-center md:text-start">
             Selva
             <span className="xs:relative text-white   z-20 before:absolute before:-left-[25px] before:-top-[70px] before:z-[-1]">
-             {" "}Ganesh G
+              {" "}
+              Ganesh G
             </span>
           </p>
 
@@ -59,8 +67,8 @@ const Landing = ({ setSelectedPage }) => {
 
         {/* call to action section */}
 
-      {/* CALL TO ACTIONS */}
-      <motion.div
+        {/* CALL TO ACTIONS */}
+        <motion.div
           className="flex mt-5 justify-center md:justify-start"
           initial="hidden"
           whileInView="visible"

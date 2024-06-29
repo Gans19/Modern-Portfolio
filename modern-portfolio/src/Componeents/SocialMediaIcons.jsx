@@ -27,7 +27,7 @@ const SocialMediaIcons = () => {
 > 
       <a
         className="hover:-translate-y-2  transition duration-500"
-        href="https://www.linkedin.com"
+        href="https://www.linkedin.com/in/selva-ganesh-g/"
         target="_blank"
         rel="noreferrer"
       >
