@@ -10,23 +10,42 @@ import About from "./Scenes/About";
 import Education from "./Scenes/Education";
 import Projects from "./Scenes/Projects";
 import Contact from "./Scenes/Contact";
+import Cursor from "./Componeents/Cursor";
+import { Empty } from "./Scenes/Empty";
+import { scroller } from "react-scroll";
 
 function App() {
+
+  useEffect(() => {
+    scroller.scrollTo("home", {
+      duration: 800,
+      delay: 0,
+      smooth: "easeInOutQuart",
+    });
+  }, []);
+
   const [selectedPage, setSelectedPage] = useState("home");
+  console.log(selectedPage)
   const iaAboveMediumScreen = UseMediaQuery("(min-width:1060px)");
   const [isTopOfPage, setIsTopOfPage] = useState(true);
 
   useEffect(() => {
+    setSelectedPage("home")
     const handleScroll = () => {
       if (window.screenY === 0) setIsTopOfPage(true);
       if (window.screenY !== 0) setIsTopOfPage(false);
     };
     window.addEventListener("scroll", handleScroll);
+
+  
+
     return () => window.removeEventListener("scroll", handleScroll);
+
   }, []);
 
   return (
     <div className="app bg-black">
+      <Cursor />
       <Navbar
         isTopOfPage={isTopOfPage}
         selectedPage={selectedPage}
@@ -36,7 +55,7 @@ function App() {
         {iaAboveMediumScreen && (
           <DotGroup
             selectedPage={selectedPage}
-            setSelectedPage={setSelectedPage}
+           setSelectedPage ={setSelectedPage}
           />
         )}
         <Landing setSelectedPage={setSelectedPage} />
@@ -53,7 +72,10 @@ function App() {
         <LineGradient />
         <Projects />
         <LineGradient />
-        <Contact />
+        <Contact setSelectedPage={setSelectedPage} />
+        {/* <Contact /> */}
+        {/* <LineGradient /> */}
+        <Empty />
       </div>
     </div>
   );

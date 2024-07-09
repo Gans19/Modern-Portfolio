@@ -13,6 +13,16 @@
   }
 }
 
+/* Custom styles for the cursor */
+.cursor {
+  width: 2rem;
+  height: 2rem;
+  background-color: #1d4ed8; /* Tailwind color */
+  border-radius: 9999px; /* Fully rounded */
+  pointer-events: none; /* Prevent cursor from interfering with clicks */
+  transition: transform 0.1s ease-in-out;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

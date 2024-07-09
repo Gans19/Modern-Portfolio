@@ -45,7 +45,7 @@ const DotGroup = ({ selectedPage, setSelectedPage }) => {
   };
 
   return (
-    <div className="flex flex-col gap-6 fixed top-[60%] right-7">
+    <div className="flex flex-col gap-6 fixed top-[60%] right-7  cursor-pointer">
       {/* <AnchorLink
         href="#home"
         className={`${

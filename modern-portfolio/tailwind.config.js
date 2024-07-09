@@ -9,13 +9,16 @@ module.exports = {
     extend: {
       keyframes: {
         'border-spin': {
-          '100%': {
-            transform: 'rotate(-360deg)',
-          },
+          '100%': { transform: 'rotate(-360deg)' },
+        },
+        'beat': {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.2)' },
         },
       },
       animation: {
         'border-spin': 'border-spin 7s linear infinite',
+        'beat': 'beat 1.5s infinite ease-in-out',
       },
       colors: {
         blue: "#2cbce9",

@@ -13,6 +13,23 @@ body,
   @apply text-white;
 }
 
+/* Custom styles for the cursor */
+.cursor {
+  width: 2rem;
+  height: 2rem;
+  background-color: #1d4ed8; /* Tailwind color */
+  border-radius: 9999px; /* Fully rounded */
+  pointer-events: none; /* Prevent cursor from interfering with clicks */
+  transition: transform 0.1s ease-in-out;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 
 @layer utilities {
   /* Act as a border */
@@ -23,8 +40,8 @@ body,
   /* Gradient */
   .card-wrapper::before {
     background: conic-gradient(
-      rgba(244, 114, 182, 0.4) 0deg,
-      rgba(192, 132, 252, 0.4) 0deg,
+      rgba(255, 255, 255) 0deg,
+      rgba(255, 255, 255) 0deg,
       transparent 80deg
     );
 
@@ -33,6 +50,6 @@ body,
 
   /* Body */
   .card-content {
-    @apply absolute left-[1px] top-[1px] h-[calc(100%-2px)] w-[calc(100%-2px)] rounded-2xl bg-gradient-to-b from-slate-800 to-slate-900;
+    @apply absolute left-[2.5px] top-[2.5px] h-[calc(100%-5px)] w-[calc(100%-5px)] rounded-2xl bg-gradient-to-b from-slate-800 to-slate-900;
   }
 }

@@ -4,6 +4,8 @@ import { BsLinkedin } from "react-icons/bs";
 import { BsTwitter } from "react-icons/bs";
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
+import { FaGithubSquare } from "react-icons/fa";
+
 import { motion } from "framer-motion";
 
 
@@ -35,7 +37,7 @@ const SocialMediaIcons = () => {
       </a>
 </motion.div>
 
-<motion.div
+{/* <motion.div
   whileHover={{ scale: 1.2, rotate: 360 }}
   whileTap={{
     scale: 0.8,
@@ -52,7 +54,7 @@ const SocialMediaIcons = () => {
         <BsTwitter size={28} />
       </a>
 
-</motion.div>
+</motion.div> */}
 
 <motion.div
   whileHover={{ scale: 1.2, rotate: 360 }}
@@ -65,7 +67,7 @@ const SocialMediaIcons = () => {
 
       <a
         className="hover:-translate-y-2  transition duration-500"
-        href="https://www.facebook.com"
+        href="https://www.facebook.com/gselva.ganesh"
         target="_blank"
         rel="noreferrer"
       >
@@ -86,11 +88,32 @@ const SocialMediaIcons = () => {
 
       <a
         className=" hover:-translate-y-2 transition duration-500"
-        href="https://www.instagram.com"
+        href="https://www.instagram.com/gselva.ganesh/"
         target="_blank"
         rel="noreferrer"
       >
         <FaInstagramSquare size={30} />
+      </a>
+
+    
+      </motion.div>
+      <motion.div
+  whileHover={{ scale: 1.2, rotate: 360 }}
+  whileTap={{
+    scale: 0.8,
+    rotate: -90,
+    borderRadius: "100%"
+  }}
+> 
+
+
+      <a
+        className=" hover:-translate-y-2 transition duration-500"
+        href="https://github.com/Gans19"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <FaGithubSquare size={30} />
       </a>
 
       </motion.div>

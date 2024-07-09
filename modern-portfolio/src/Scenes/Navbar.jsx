@@ -13,6 +13,8 @@ import {
   scrollSpy,
 } from "react-scroll";
 
+import { GiHamburgerMenu } from "react-icons/gi";
+
 // const Link = ({ page, selectedPage, setSelectedPage }) => {
 //   const lowerCasePage = page.toLowerCase();
 
@@ -136,7 +138,7 @@ export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
                   className={`${
                     selectedPage === "home" ? " text-yellow" : "text-white"
                   }
-    hover:text-yellow transition duration-500`}
+    hover:text-yellow transition duration-500  hover:cursor-pointer`}
                   variants={varients}
                   initial="initial"
                   whileInView="animate"
@@ -165,7 +167,7 @@ export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
                   className={`${
                     selectedPage === "about" ? " text-yellow" : "text-white"
                   }
-    hover:text-yellow transition duration-500`}
+    hover:text-yellow transition duration-500  hover:cursor-pointer`}
                   initial="initial"
                   whileInView="animate"
                 >
@@ -194,7 +196,7 @@ export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
                   className={`${
                     selectedPage === "education" ? " text-yellow" : "text-white"
                   }
-    hover:text-yellow transition duration-500`}
+    hover:text-yellow transition duration-500  hover:cursor-pointer`}
                 >
                   Education
                 </motion.p>
@@ -220,7 +222,7 @@ export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
                   className={`${
                     selectedPage === "skills" ? " text-yellow" : "text-white"
                   }
-    hover:text-yellow transition duration-500`}
+    hover:text-yellow transition duration-500  hover:cursor-pointer`}
                 >
                   Skills
                 </p>
@@ -254,12 +256,13 @@ export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
                   className={`${
                     selectedPage === "projects" ? " text-yellow" : "text-white"
                   }
-    hover:text-yellow transition duration-500`}
+    hover:text-yellow transition duration-500  hover:cursor-pointer`}
                 >
                   Projects
                 </p>
               </Link>
             </motion.div>
+
             <motion.div whileTap={{ scale: 0.8 }}>
               {/* <Link
                 page="Contact"
@@ -280,20 +283,21 @@ export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
                   className={`${
                     selectedPage === "contact" ? " text-yellow" : "text-white"
                   }
-    hover:text-yellow transition duration-500`}
+    hover:text-yellow transition duration-500 hover:cursor-pointer`}
                 >
                   Contact
                 </p>
               </Link>
             </motion.div>
+            
           </motion.div>
         ) : (
           <div>
             <button
-              className=" bg-red p-2"
+              className=" bg-yellow p-2"
               onClick={() => setIsMenuToggle(!isMenuToggle)}
             >
-              <p> =_= </p>
+              <GiHamburgerMenu className=" text-black"/>
             </button>
           </div>
         )}
@@ -301,7 +305,7 @@ export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
       {/* desktop-menu */}
 
       {!isAboveSmallScreen && isMenuToggle && (
-        <div className=" fixed right-0 bottom-0 h-full bg-blue w-[300px] transition ease-in-out duration-1500 ">
+        <div className=" fixed right-0 bottom-0 h-full ml-[33%] bg-yellow z-50 w-[300px] transition ease-in-out duration-1500 ">
           {/* close icon */}
           <div className=" flex justify-end p-12">
             <button onClick={() => setIsMenuToggle(false)}>
@@ -345,7 +349,7 @@ export const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
                   smooth={true}
                   offset={50}
                   duration={500}
-                  // onSetActive={handleSetActive}
+                   onSetActive={handleSetActive}
                   //     selectedPage={selectedPage}
                   // setSelectedPage={setSelectedPage}
                 >
