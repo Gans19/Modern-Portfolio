@@ -13,10 +13,10 @@ const About = () => {
       id="about"
       initial="hidden"
       animate="visible"
-      className="w-full h-full p-8 mb-6 flex flex-col items-center justify-center"
+      className="w-full md:h-[80%]  px-8 mb-6 flex flex-col items-center justify-center"
     >
       <motion.h2
-        className="text-4xl font-extrabold tracking-tight text-white mb-12"
+        className="text-4xl font-extrabold tracking-tight text-white mb-4"
       >
         About Me
       </motion.h2>

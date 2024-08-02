@@ -51,7 +51,7 @@ function App() {
         selectedPage={selectedPage}
         setSelectedPage={setSelectedPage}
       />
-      <div className=" w-5/6  mx-auto md:h-full">
+      <div className=" w-5/6  mx-auto md:h-[95%]">
         {iaAboveMediumScreen && (
           <DotGroup
             selectedPage={selectedPage}
@@ -63,7 +63,7 @@ function App() {
       </div>
 
 
-      <div className=" w-5/6 mx-auto md:h-full">
+      <div className=" w-5/6 mx-auto md:h-[90%]">
         <About />
         <LineGradient />
         <Education />

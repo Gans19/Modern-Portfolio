@@ -1,13 +1,21 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import emailjs from "emailjs-com";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const Contact = ({setSelectedPage}) => {
+const Contact = ({ setSelectedPage }) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const ref = useRef();
   const isInView = useInView(ref, { margin: "-100px" });
 
   useEffect(() => {
-    <link rel="alternate" to="home"/>
-  },[])
+    <link rel="alternate" to="home" />;
+  }, []);
 
   useEffect(() => {
     if (isInView) {
@@ -52,18 +60,39 @@ const Contact = ({setSelectedPage}) => {
     },
   };
 
-  const handleSendEmail = () => {
-    const name = encodeURIComponent(document.getElementById("name").value);
-    const email = encodeURIComponent(document.getElementById("email").value);
-    const message = encodeURIComponent(
-      document.getElementById("message").value
-    );
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-    const subject = `Message from ${name} (${email})`;
+  const handleSendEmail = (e) => {
+    e.preventDefault();
 
-    const mailtoLink = `mailto:kingganeshv@gmail.com?subject=${subject}&body=${message}`;
+    const emailParams = {
+      name: formData.name,
+      email: formData.email,
+      message: `Sender: ${formData.name}\nEmail: ${formData.email}\nMessage: ${formData.message}`,
+    };
 
-    window.location.href = mailtoLink;
+    emailjs
+      .send(
+        "service_odvzu4m",
+        "template_mk5bxoj",
+        emailParams,
+        "WN8oFQ_IqsRAO5RvK"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          toast.success("Email sent successfully!");
+        },
+        (error) => {
+          console.log(error.text);
+          toast.error("Failed to send email.");
+        }
+      );
+
+    setFormData({ name: "", email: "", message: "" });
   };
 
   return (
@@ -108,7 +137,7 @@ const Contact = ({setSelectedPage}) => {
           </svg>
         </motion.div>
 
-        <div className="space-y-4 mx-auto max-w-md">
+        <form className="space-y-4 mx-auto max-w-md" onSubmit={handleSendEmail}>
           <div className="flex flex-col">
             <label htmlFor="name" className="text-white">
               Name
@@ -116,6 +145,9 @@ const Contact = ({setSelectedPage}) => {
             <input
               id="name"
               type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
               className="p-2 rounded-md bg-black border border-white text-white"
               autoFocus
             />
@@ -128,6 +160,9 @@ const Contact = ({setSelectedPage}) => {
             <input
               id="email"
               type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
               className="p-2 rounded-md bg-black border border-white text-white"
             />
           </div>
@@ -138,19 +173,23 @@ const Contact = ({setSelectedPage}) => {
             </label>
             <textarea
               id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleInputChange}
               rows="4"
               className="p-2 rounded-md bg-black border border-white text-white"
             ></textarea>
           </div>
 
           <button
-            type="button"
-            onClick={handleSendEmail}
+            type="submit"
             className="w-full p-2 mt-4 text-white bg-indigo-600 rounded-md"
           >
             Send Message
           </button>
-        </div>
+        </form>
+
+        <ToastContainer />
       </motion.div>
     </motion.div>
   );

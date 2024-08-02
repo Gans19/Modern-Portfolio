@@ -1,5 +1,4 @@
 import React from 'react';
-// import { skills } from '../../data/constants';
 import { motion } from 'framer-motion';
 
 const SkillsSection = ({ skills }) => {
@@ -11,11 +10,11 @@ const SkillsSection = ({ skills }) => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6  lg:px-8">
-        <h2 className="text-3xl font-extrabold tracking-tight  text-white sm:text-4xl text-center mb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl text-center mb-8">
           Skills
         </h2>
-        <div className="pyramid-grid  ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8">
           {skills.map((skill, index) => (
             <SkillCard key={index} skill={skill} />
           ))}
@@ -27,35 +26,37 @@ const SkillsSection = ({ skills }) => {
 
 const SkillCard = ({ skill }) => {
   return (
-    <div
-      className="skill-card items-center h-[100%]  py-8 gap-8"
-      
-    >
-      <h3 className="text-2xl flex justify-center items-center font-medium text-white mb-2 ">{skill.title}</h3>
-    <motion.div
-      className="skill-card  h-[100%] justify-center items-center flex flex-row py-8 gap-8"
-      
-    >
-      <motion.div className="skill-items flex flex-row gap-8"
-      
+    <div className="skill-card items-center h-full py-8 gap-8">
+      <h3 className="text-2xl flex justify-center items-center font-medium text-white mb-2">
+        {skill.title}
+      </h3>
+      <motion.div
+        className="skill-card h-full justify-center items-center flex flex-col md:flex-row py-8 gap-8"
       >
-        {skill.skills.map((item, itemIndex) => (
-          <SkillItem key={itemIndex} item={item} />
-        ))}
+        <motion.div className="skill-items flex flex-wrap justify-center gap-8">
+          {skill.skills.map((item, itemIndex) => (
+            <SkillItem key={itemIndex} item={item} />
+          ))}
+        </motion.div>
       </motion.div>
-    </motion.div>
     </div>
   );
 };
 
 const SkillItem = ({ item }) => {
   return (
-    <motion.div className="skill-item flex flex-col gap-y-4 "
-    whileHover={{ scale: 1.2 }}
+    <motion.div
+      className="skill-item flex flex-col items-center gap-y-4"
+      whileHover={{ scale: 1.2 }}
     >
-      <div className='h-24 w-24 justify-center items-center'>
-
-      <img className="skill-image object-cover" src={item.image} width={80} height={80}  alt={item.name} />
+      <div className="h-24 w-24 flex justify-center items-center">
+        <img
+          className="skill-image object-cover"
+          src={item.image}
+          width={80}
+          height={80}
+          alt={item.name}
+        />
       </div>
       <span className="text-sm font-medium text-gray-500">{item.name}</span>
     </motion.div>

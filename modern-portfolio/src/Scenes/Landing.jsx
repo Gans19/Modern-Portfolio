@@ -10,10 +10,10 @@ const Landing = ({ setSelectedPage }) => {
   return (
     <section
       id="home"
-      className="md:flex md:justify-normal md:items-center md:h-full gap-16 py-6"
+      className="md:flex md:justify-normal md:items-center w-full md:h-[80%] gap-16"
     >
       {/* Image section */}
-      <div className="md:order-2 flex justify-center basis-3/5 z-10 mt-4 ">
+      <div className="md:order-2 flex justify-center basis-3/5 z-10  ">
         {isAboveMediumScreen ? (
           // <div className="card-wrapper  relative z-0 ml-20 before:absolute before:-top-20 before:-left-20 before:rounded-t-[400pc] before:w-full before:h-full before:border-2 before:border-blue before:max-w-[400px] before:z-[-1]">
 
@@ -87,7 +87,7 @@ const Landing = ({ setSelectedPage }) => {
         >
           <a
             className="bg-gradient-rainblue text-deep-blue rounded-sm py-3 px-7 font-semibold hover:bg-blue hover:text-white transition duration-500"
-            href="https://drive.google.com/file/d/1hWSpOg4JIs-XxHqST85nGC49_fTEBLjF/view?usp=sharing"
+            href="https://drive.google.com/file/d/1CW4NAQRwqvVXvxzlEQkkCBg668V5o6Zj/view?usp=sharing"
             target="_blank"
           >
             Download CV
